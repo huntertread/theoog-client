@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './createurl.css'
 
 class CreateUrl extends Component {
 
@@ -21,7 +22,7 @@ class CreateUrl extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('/', { // update this route for production
+    axios.post('/', {
       owner: this.state.owner,
       originalurl: this.state.originalurl,
       shorturl: this.state.shorturl,

@@ -4,20 +4,25 @@ import './createurl.css'
 
 class CreateUrl extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      owner: '',
+      owner: this.props.userid, // handed down from app component
       originalurl: '',
-      shorturl: '',
+      shorturl: '', // hashed from original url
       urlnickname: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.hashUrl = this.hashUrl.bind(this)
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
+  }
+
+  hashUrl(url) {
+    // a function that hashes the incoming url, sets the hashed value to state
   }
 
   handleSubmit(event) {
@@ -29,7 +34,9 @@ class CreateUrl extends Component {
       urlnickname: this.state.urlnickname
     })
     .then((results) => {
+      // attach new record to user table under urls array
       console.log(results.data[0]) // do something useful with this :P
+      this.props.getAllUrls()
     })
     .catch((err) => {
       console.error(err)
@@ -41,16 +48,8 @@ class CreateUrl extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            owner:
-            <input type="text" name="owner" value={this.state.owner} onChange={this.handleChange}/>
-          </label><br />
-          <label>
             original url:
             <input type="text" name="originalurl" value={this.state.originalurl} onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            short url:
-            <input type="text" name="shorturl" value={this.state.shorturl} onChange={this.handleChange}/>
           </label><br />
           <label>
             nick name:

@@ -39,21 +39,16 @@ class LogIn extends Component {
   render() {
     if (this.props.loggedIn === false) {
       return(
-        <div>
-          <form>
-            <label>
-              log-in:
-              <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-              <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-              <button onClick={this.handleSubmit}>log in</button>
-            </label>
-          </form>
+        <div className="login-container">
+          <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
+          <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
+          <button onClick={this.handleSubmit}>log in</button>
         </div>
       )
     } else if (this.props.loggedIn === true) {
       return(
-        <div>
-          <h1>{`hey there, ${this.props.activeUserName}!`}</h1>
+        <div className="logout-container">
+          <p>{`hey there, ${this.props.activeUserName}!`}</p>
           <button onClick={() => this.props.setLogIn()}>log out</button>
         </div>
       )

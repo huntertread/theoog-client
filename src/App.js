@@ -49,9 +49,7 @@ class App extends Component {
     console.log(noHash)
     axios.get(`/${noHash}`)
       .then((results) => {
-        // console.log(results)
         window.location.assign("//" + results.data[0].originalurl)
-        // window.location.href = results.data[0].originalurl
       })
       .catch((err) => {
         console.error(err)
@@ -92,7 +90,6 @@ class App extends Component {
 
   componentDidMount() {
     if (window.location.hash !== '') {
-      console.log('hashed')
       this.getRedirect()
     } else {
       this.getAllUrls()
@@ -100,39 +97,34 @@ class App extends Component {
   }
 
   render() {
-
     let content;
     if (this.state.loggedIn === true) {
       content =
-        <div>
-          <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+        <div className="logged-in-content">
+          <div className="header">
+            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+          </div>
           <h1>your urls:</h1>
           <CreateUrl getAllUrls={this.getAllUrls} username={this.state.username} userid={this.state.userid}/>
           <ExistingUrlContainer urls={this.state.urls}/>
         </div>
     } else if (this.state.loggedIn === false) {
-      if (this.state.anonUrlReturn.length === 0) {
-        content =
-        <div>
-          <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} activeUserName={this.state.username}/>
-          <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-          <h1>oog.la url shortening service</h1>
-          <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
-          <input name="anonUrlSubmit" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
-          <button onClick={this.submitAnon}>shorten</button>
-        </div>
-      } else {
-        content =
-        <div>
-          <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} activeUserName={this.state.username}/>
-          <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-          <h1>oog.la url shortening service</h1>
-          <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
-          <input name="anonUrlSubmit" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
-          <button onClick={this.submitAnon}>shorten</button>
-          <p>your short url: oog.la/{this.state.anonUrlReturn.shorturl}</p>
-        </div>
+      let anonUrl
+      if (this.state.anonUrlReturn.length !== 0) {
+        anonUrl = <p>your short url: localhost:3000/#{this.state.anonUrlReturn.shorturl}</p>
       }
+      content =
+        <div className="logged-out-content">
+          <div className="header">
+            <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+          </div>
+          <h1>oog.la url shortening service</h1>
+          <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
+          <input name="anonUrlSubmit" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
+          <button onClick={this.submitAnon}>shorten</button>
+          {anonUrl}
+        </div>
     }
 
     return (

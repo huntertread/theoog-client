@@ -1,0 +1,22 @@
+.login-container {
+  margin-right: 10px;
+}
+
+.logout-container {
+  margin-right: 10px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-submit {
+  /* border: none; */
+  background-color: #ebba34;
+  margin: 10px;
+}
+
+.login-submit:hover {
+  cursor: pointer;
+  color: white;
+}

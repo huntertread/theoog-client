@@ -55,7 +55,7 @@ class Register extends Component {
       )
     } else if (this.props.registered === false) {
       return(
-        <div>
+        <div className="registration-form">
           <form>
             <label>
               username:

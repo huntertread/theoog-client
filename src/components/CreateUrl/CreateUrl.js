@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import md5 from 'md5'
 import './createurl.css'
 
 class CreateUrl extends Component {
@@ -9,7 +10,7 @@ class CreateUrl extends Component {
     this.state = {
       owner: this.props.userid, // handed down from app component
       originalurl: '',
-      shorturl: '', // hashed from original url
+      // shorturl: '', // hashed from original url
       urlnickname: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -23,14 +24,18 @@ class CreateUrl extends Component {
 
   hashUrl(url) {
     // a function that hashes the incoming url, sets the hashed value to state
+    var hashed = md5(url)
+    return hashed
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
+    var hashed = await this.hashUrl(this.state.originalurl)
     axios.post('/', {
       owner: this.state.owner,
       originalurl: this.state.originalurl,
-      shorturl: this.state.shorturl,
+      // shorturl: this.state.shorturl,
+      shorturl: hashed,
       urlnickname: this.state.urlnickname
     })
     .then((results) => {

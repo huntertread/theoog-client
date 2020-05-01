@@ -5,7 +5,7 @@ const IndividualUrl = ({ urlproperties }) => {
   return(
     <div>
       <p>{urlproperties.originalurl}</p>
-      <p>{urlproperties.shorturl}</p>
+      <p>localhost:3000/#{urlproperties.shorturl}</p>
       <p>{urlproperties.urlnickname}</p>
       <button>copy to clipboard</button>
     </div>

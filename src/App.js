@@ -5,6 +5,7 @@ import CreateUrl from './components/CreateUrl/CreateUrl.js'
 import ExistingUrlContainer from './components/ExistingUrl/ExistingUrlContainer/ExistingUrlContainer.js'
 import Footer from './components/Footer/Footer.js'
 import axios from 'axios'
+import md5 from 'md5'
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,8 @@ class App extends Component {
     this.getAllUrls = this.getAllUrls.bind(this)
     this.submitAnon = this.submitAnon.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.hashUrl = this.hashUrl.bind(this)
+    this.getRedirect = this.getRedirect.bind(this)
   }
 
   setLogIn() {
@@ -38,6 +41,21 @@ class App extends Component {
 
   setUser(username, userid) {
     this.setState({username: username, userid: userid})
+  }
+
+  getRedirect() {
+    console.log(window.location.hash)
+    const noHash = window.location.hash.substring(1)
+    console.log(noHash)
+    axios.get(`/${noHash}`)
+      .then((results) => {
+        // console.log(results)
+        window.location.assign("//" + results.data[0].originalurl)
+        // window.location.href = results.data[0].originalurl
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   getAllUrls() {
@@ -54,11 +72,17 @@ class App extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  submitAnon() {
+  hashUrl(url) {
+    var hashed = md5(url)
+    return hashed
+  }
+
+  async submitAnon() {
+    var hashed = await this.hashUrl(this.state.anonUrlSubmit)
     axios.post('/', {
       owner: this.state.userid,
       originalurl: this.state.anonUrlSubmit,
-      shorturl: this.state.shorturl
+      shorturl: hashed
     })
       .then((response) => {
         this.setState({anonUrlReturn: response.data[0]})
@@ -67,7 +91,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAllUrls()
+    if (window.location.hash !== '') {
+      console.log('hashed')
+      this.getRedirect()
+    } else {
+      this.getAllUrls()
+    }
   }
 
   render() {
@@ -101,7 +130,7 @@ class App extends Component {
           <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
           <input name="anonUrlSubmit" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
           <button onClick={this.submitAnon}>shorten</button>
-          <p>your short url: {this.state.anonUrlReturn.originalurl}</p>
+          <p>your short url: oog.la/{this.state.anonUrlReturn.shorturl}</p>
         </div>
       }
     }

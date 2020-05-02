@@ -104,8 +104,8 @@ class App extends Component {
           <div className="header">
             <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
           </div>
-          <h1>your urls:</h1>
           <CreateUrl getAllUrls={this.getAllUrls} username={this.state.username} userid={this.state.userid}/>
+          <h1>your urls:</h1>
           <ExistingUrlContainer urls={this.state.urls}/>
         </div>
     } else if (this.state.loggedIn === false) {
@@ -121,7 +121,7 @@ class App extends Component {
           </div>
           <h1>oog.la url shortening service</h1>
           <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
-          <input name="anonUrlSubmit" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
+          <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
           <button onClick={this.submitAnon}>shorten</button>
           {anonUrl}
         </div>

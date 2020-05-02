@@ -1,13 +1,21 @@
 .login-container {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+}
+
+.login-container input {
+  margin: 5px;
 }
 
 .logout-container {
-  margin-right: 10px;
+  margin: 10px;
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.logout-container p {
+  margin-left: 10px;
 }
 
 .login-submit {

@@ -7,6 +7,10 @@
   justify-content: flex-end;
 }
 
+.long-input {
+  width: 50%;
+}
+
 button {
   background-color: #ebba34;
   margin: 10px;

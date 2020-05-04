@@ -40,7 +40,6 @@ class CreateUrl extends Component {
     })
     .then((results) => {
       // attach new record to user table under urls array
-      console.log(results.data[0]) // do something useful with this :P
       this.props.getAllUrls()
     })
     .catch((err) => {
@@ -51,17 +50,9 @@ class CreateUrl extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            original url:
-            <input type="text" name="originalurl" value={this.state.originalurl} onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            nick name:
-            <input type="text" name="urlnickname" value={this.state.urlnickname} onChange={this.handleChange}/>
-          </label><br />
-          <input type="submit" value="Submit"/>
-        </form>
+        <input type="text" name="originalurl" placeholder="paste your long url here" value={this.state.originalurl} onChange={this.handleChange}/>
+        {/* <input type="text" name="urlnickname" value={this.state.urlnickname} onChange={this.handleChange}/> */}
+        <button onClick={this.handleSubmit}>shorten</button>
       </div>
     )
   }

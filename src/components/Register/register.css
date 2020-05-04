@@ -1,5 +1,27 @@
-.registration-form {
+.registration-form-container {
+  display: block;
   z-index: 5;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+.registration-form-content {
+  margin: 15% auto;
+  background-color: white;
+  max-width: 450px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.register-button {
+  background-color: rgba(255, 255, 255, 0.0);
+  border: none;
+}
+
+.register-button:hover {
+  color: orange;
 }

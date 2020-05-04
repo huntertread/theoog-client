@@ -105,22 +105,33 @@ class App extends Component {
             <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
           </div>
           <CreateUrl getAllUrls={this.getAllUrls} username={this.state.username} userid={this.state.userid}/>
-          <h1>your urls:</h1>
+          <h1>{this.state.username}'s urls:</h1>
           <ExistingUrlContainer urls={this.state.urls}/>
         </div>
     } else if (this.state.loggedIn === false) {
       let anonUrl
       if (this.state.anonUrlReturn.length !== 0) {
-        anonUrl = <p>your short url: localhost:3000/#{this.state.anonUrlReturn.shorturl}</p>
+        anonUrl = 
+        <div>
+          <p>you wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
+          <p>original url: {this.state.anonUrlReturn.originalurl}</p>
+          <p>your short url: <strong>localhost:3000/#{this.state.anonUrlReturn.id}</strong></p>
+          <button onClick={() => navigator.clipboard.writeText(`localhost:3000/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
+        </div>
       }
       content =
         <div className="logged-out-content">
           <div className="header">
-            <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+            <div className="header-logo">
+              <p>OOG.LA</p>
+            </div>
+            <div className="header-login-register">
+              <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+              <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+            </div>
           </div>
-          <h1>oog.la url shortening service</h1>
-          <p>try it out! urls made without an account using the ui below are deleted every night at midnight PST</p>
+          <p>a no frills URL shortener. Takes any URL and creates a reusable, much shorter redirect</p>
+          <p>try it out!</p>
           <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
           <button onClick={this.submitAnon}>shorten</button>
           {anonUrl}

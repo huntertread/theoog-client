@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import md5 from 'md5'
 import './register.css'
 
 class Register extends Component {
@@ -28,11 +29,11 @@ class Register extends Component {
           if (results.data[0] === undefined) {
             axios.post('/register', {
               username: this.state.username,
-              password: this.state.password,
+              password: md5(this.state.password),
               email: this.state.email
             })
             .then((results) => {
-              console.log(results.data[0])
+              // console.log(results.data[0])
               this.props.setUser(results.data[0].username, results.data[0].id)
               this.props.setLogIn()
             })
@@ -51,12 +52,13 @@ class Register extends Component {
   render() {
     if (this.props.registered === true) {
       return (
-        <button onClick={this.props.setRegistered}>register</button>
+        <button className="register-button" onClick={this.props.setRegistered}>register</button>
       )
     } else if (this.props.registered === false) {
       return(
-        <div className="registration-form">
-          <form>
+        <div className="registration-form-container">
+          <form className="registration-form-content">
+            <h2>REGISTER</h2>
             <label>
               username:
               <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>

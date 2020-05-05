@@ -18,6 +18,7 @@ class App extends Component {
       registered: true,
       createdAnon: false,
       anonUrlSubmit: '',
+      urlError: '',
       anonUrlReturn: [],
       urls: []
     }
@@ -29,6 +30,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.hashUrl = this.hashUrl.bind(this)
     this.getRedirect = this.getRedirect.bind(this)
+    this.checkValidUrl = this.checkValidUrl.bind(this)
   }
 
   setLogIn() {
@@ -75,24 +77,40 @@ class App extends Component {
     return hashed
   }
 
-  async submitAnon() {
-    var hashed = await this.hashUrl(this.state.anonUrlSubmit)
-    axios.post('/', {
-      owner: this.state.userid,
-      originalurl: this.state.anonUrlSubmit,
-      shorturl: hashed
-    })
+  checkValidUrl(url) {
+    const regex = RegExp('((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+')
+    const passCheck = regex.test(url)
+    if (passCheck === true) {
+      return passCheck
+    } else {
+      return false
+    }
+  }
+
+  submitAnon(event) {
+    event.preventDefault()
+    if (this.checkValidUrl(this.state.anonUrlSubmit)) {
+      var hashed = this.hashUrl(this.state.anonUrlSubmit)
+      axios.post('/', {
+        owner: this.state.userid,
+        originalurl: this.state.anonUrlSubmit,
+        shorturl: hashed
+      })
       .then((response) => {
         this.setState({anonUrlReturn: response.data[0]})
-        console.log(this.state.anonUrlReturn)
+        this.setState({urlError: ''})
+        // console.log(this.state.anonUrlReturn)
       })
+    } else {
+      this.setState({urlError: '**invalid url, must include http:// or https://'})
+    }
   }
 
   componentDidMount() {
     if (window.location.hash !== '') {
       this.getRedirect()
     } else {
-      this.getAllUrls()
+      // this.getAllUrls()
     }
   }
 
@@ -113,7 +131,7 @@ class App extends Component {
       if (this.state.anonUrlReturn.length !== 0) {
         anonUrl = 
         <div>
-          <p>you wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
+          <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
           <p>original url: {this.state.anonUrlReturn.originalurl}</p>
           <p>your short url: <strong>localhost:3000/#{this.state.anonUrlReturn.id}</strong></p>
           <button onClick={() => navigator.clipboard.writeText(`localhost:3000/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
@@ -123,17 +141,21 @@ class App extends Component {
         <div className="logged-out-content">
           <div className="header">
             <div className="header-logo">
-              <p>OOG.LA</p>
+              <p>OOGLA</p>
             </div>
             <div className="header-login-register">
               <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
               <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
             </div>
           </div>
-          <p>a no frills URL shortener. Takes any URL and creates a reusable, much shorter redirect</p>
-          <p>try it out!</p>
-          <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
+          <img src="https://cdn1.vectorstock.com/i/1000x1000/36/85/caveman-with-club-vector-163685.jpg"/>
+          <p>A no frills URL shortener. Takes any URL and creates a shorter redirect.</p>
+          <p>Try it out!</p>
+          <form>
+          <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here, http or https required" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>
           <button onClick={this.submitAnon}>shorten</button>
+          </form>
+          <p className="url-validation-error">{this.state.urlError}</p>
           {anonUrl}
         </div>
     }

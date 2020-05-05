@@ -16,6 +16,7 @@ class CreateUrl extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.hashUrl = this.hashUrl.bind(this)
+    this.checkValidUrl = this.checkValidUrl.bind(this)
   }
 
   handleChange(event) {
@@ -28,23 +29,37 @@ class CreateUrl extends Component {
     return hashed
   }
 
-  async handleSubmit(event) {
+  checkValidUrl(url) {
+    const regex = RegExp('((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+')
+    const passCheck = regex.test(url)
+    if (passCheck === true) {
+      return passCheck
+    } else {
+      return false
+    }
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
-    var hashed = await this.hashUrl(this.state.originalurl)
-    axios.post('/', {
-      owner: this.state.owner,
-      originalurl: this.state.originalurl,
-      // shorturl: this.state.shorturl,
-      shorturl: hashed,
-      urlnickname: this.state.urlnickname
-    })
-    .then((results) => {
-      // attach new record to user table under urls array
-      this.props.getAllUrls()
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+    var hashed = this.hashUrl(this.state.originalurl)
+    if (this.checkValidUrl(this.state.originalurl)) {
+      axios.post('/', {
+        owner: this.state.owner,
+        originalurl: this.state.originalurl,
+        // shorturl: this.state.shorturl,
+        shorturl: hashed,
+        urlnickname: this.state.urlnickname
+      })
+      .then((results) => {
+        // attach new record to user table under urls array
+        this.props.getAllUrls()
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    } else {
+      console.log('didnt pass url validation')
+    }
   }
 
   render() {

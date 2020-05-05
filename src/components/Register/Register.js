@@ -11,7 +11,10 @@ class Register extends Component {
       password: '',
       passconfirm: '',
       email: '',
-      emailconfirm: ''
+      emailconfirm: '',
+      unError: '',
+      emailError: '',
+      pwError: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,30 +26,39 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    if (this.state.password === this.state.passconfirm && this.state.email === this.state.emailconfirm) {
-      axios.get(`/getExistingUser/${this.state.username}`)
-        .then((results) => {
-          if (results.data[0] === undefined) {
-            axios.post('/register', {
-              username: this.state.username,
-              password: md5(this.state.password),
-              email: this.state.email
-            })
-            .then((results) => {
-              // console.log(results.data[0])
-              this.props.setUser(results.data[0].username, results.data[0].id)
-              this.props.setLogIn()
-            })
-            .catch((err) => {
-              console.error(err)
-            })
+    axios.get(`/getExistingUser/${this.state.username.toLowerCase()}`)
+      .then((results) => {
+        if (results.data[0] === undefined) {
+          if (this.state.password === this.state.passconfirm) {
+            if (this.state.email === this.state.emailconfirm) {
+              axios.post('/register', {
+                username: this.state.username.toLowerCase(),
+                password: md5(this.state.password),
+                email: this.state.email
+              })
+              .then((results) => {
+                // console.log(results.data[0])
+                this.props.setUser(results.data[0].username, results.data[0].id)
+                this.props.setLogIn()
+              })
+              .catch((err) => {
+                console.error(err)
+              })
           } else {
-            console.log('username is taken')
+            this.setState({emailError: '**emails do not match'})
+            this.setState({pwError: ''})
           }
-        })
-    } else {
-      console.log('email and/or passwords do not match')
-    }
+        } else {
+          this.setState({pwError: '**passwords do not match'})
+          this.setState({unError: ''})
+        }
+      } else {
+        this.setState({unError: `**sorry, ${this.state.username} is taken`})
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+    })
   }
 
   render() {
@@ -63,6 +75,7 @@ class Register extends Component {
               username:
               <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
             </label><br/>
+            <p className="reg-error">{this.state.unError}</p>
             <label>
               email:
               <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/>
@@ -71,6 +84,7 @@ class Register extends Component {
               confirm email:
               <input name="emailconfirm" type="text" value={this.state.emailconfirm} onChange={this.handleChange}/>
             </label><br/>
+            <p className="reg-error">{this.state.emailError}</p>
             <label>
               password:
               <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
@@ -79,6 +93,7 @@ class Register extends Component {
               confirm password:
               <input name="passconfirm" type="password" value={this.state.passconfirm} onChange={this.handleChange}/>
             </label><br/>
+            <p className="reg-error">{this.state.pwError}</p>
             <button onClick={this.handleSubmit}>submit</button>
             <button onClick={this.props.setRegistered}>cancel</button>
           </form>

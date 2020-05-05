@@ -8,7 +8,8 @@ class LogIn extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      validationMessage: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,16 +21,16 @@ class LogIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.get(`/getExistingUser/${this.state.username}`)
+    axios.get(`/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {
-          alert('username or password is incorrect')
+          this.setState({validationMessage: '**username or password is incorrect'})
         } else if (results.data[0].password === md5(this.state.password)) {
           this.props.setUser(results.data[0].username, results.data[0].id)
           this.props.setLogIn()
           this.props.getAllUrls()
         } else {
-          alert('username or password is incorrect')
+          this.setState({validationMessage: '**username or password is incorrect'})
         }
       })
       .catch((err) => {
@@ -44,6 +45,7 @@ class LogIn extends Component {
           <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
           <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
           <button onClick={this.handleSubmit}>log in</button>
+          <p className="unpw-validation-error">{this.state.validationMessage}</p>
         </div>
       )
     } else if (this.props.loggedIn === true) {

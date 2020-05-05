@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+img {
+  margin-top: 50px;
+  width: 40%;
+  height: 25%;
+  max-height: 450px;
+  max-width: 450px;
+}
+
+.url-validation-error{
+  color: red;
+  margin: 0px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

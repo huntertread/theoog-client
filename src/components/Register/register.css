@@ -25,3 +25,8 @@
 .register-button:hover {
   color: orange;
 }
+
+.reg-error {
+  color: red;
+  margin: 0px;
+}

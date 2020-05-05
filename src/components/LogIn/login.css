@@ -28,3 +28,8 @@
   cursor: pointer;
   color: white;
 }
+
+.unpw-validation-error{
+  color: red;
+  margin: 0px;
+}

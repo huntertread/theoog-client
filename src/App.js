@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import LogIn from './components/LogIn/LogIn.js'
 import Register from './components/Register/Register.js'
 import CreateUrl from './components/CreateUrl/CreateUrl.js'
@@ -6,7 +6,7 @@ import ExistingUrlContainer from './components/ExistingUrl/ExistingUrlContainer/
 import Footer from './components/Footer/Footer.js'
 import axios from 'axios'
 import md5 from 'md5'
-import './App.css';
+import './App.css'
 
 class App extends Component {
   constructor() {
@@ -46,12 +46,10 @@ class App extends Component {
   }
 
   getRedirect() {
-    console.log(window.location.hash)
     const noHash = window.location.hash.substring(1)
-    console.log(noHash)
     axios.get(`/${noHash}`)
       .then((results) => {
-        window.location.assign("//" + results.data[0].originalurl)
+        window.location.href = results.data[0].originalurl
       })
       .catch((err) => {
         console.error(err)
@@ -99,7 +97,6 @@ class App extends Component {
       .then((response) => {
         this.setState({anonUrlReturn: response.data[0]})
         this.setState({urlError: ''})
-        // console.log(this.state.anonUrlReturn)
       })
     } else {
       this.setState({urlError: '**invalid url, must include http:// or https://'})
@@ -109,8 +106,6 @@ class App extends Component {
   componentDidMount() {
     if (window.location.hash !== '') {
       this.getRedirect()
-    } else {
-      // this.getAllUrls()
     }
   }
 
@@ -119,7 +114,7 @@ class App extends Component {
     if (this.state.loggedIn === true) {
       content =
         <div className="logged-in-content">
-          <div className="header">
+          <div className="logged-in-header">
             <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
           </div>
           <CreateUrl getAllUrls={this.getAllUrls} username={this.state.username} userid={this.state.userid}/>
@@ -129,7 +124,7 @@ class App extends Component {
     } else if (this.state.loggedIn === false) {
       let anonUrl
       if (this.state.anonUrlReturn.length !== 0) {
-        anonUrl = 
+        anonUrl =
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
           <p>original url: {this.state.anonUrlReturn.originalurl}</p>
@@ -139,7 +134,7 @@ class App extends Component {
       }
       content =
         <div className="logged-out-content">
-          <div className="header">
+          <div className="logged-out-header">
             <div className="header-logo">
               <p>OOGLA</p>
             </div>
@@ -148,7 +143,7 @@ class App extends Component {
               <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
             </div>
           </div>
-          <img src="https://cdn1.vectorstock.com/i/1000x1000/36/85/caveman-with-club-vector-163685.jpg"/>
+          <img alt="" src="https://cdn1.vectorstock.com/i/1000x1000/36/85/caveman-with-club-vector-163685.jpg"/>
           <p>A no frills URL shortener. Takes any URL and creates a shorter redirect.</p>
           <p>Try it out!</p>
           <form>
@@ -165,7 +160,7 @@ class App extends Component {
         {content}
         <Footer />
       </div>
-    );
+    )
   }
 }
 

@@ -13,8 +13,20 @@
   margin: 15% auto;
   background-color: white;
   max-width: 450px;
-  height: 250px;
+  height: 300px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-form-content input {
+  width: 250px;
+  margin: auto;
+}
+
+.registration-button {
+  width: 100px;
+  margin: auto;
 }
 
 .register-button {

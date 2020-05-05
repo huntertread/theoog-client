@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import md5 from 'md5'
 import './createurl.css'
 
 class CreateUrl extends Component {
@@ -8,25 +7,18 @@ class CreateUrl extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      owner: this.props.userid, // handed down from app component
+      owner: this.props.userid,
       originalurl: '',
-      // shorturl: '', // hashed from original url
-      urlnickname: ''
+      urlnickname: '',
+      validationError: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.hashUrl = this.hashUrl.bind(this)
     this.checkValidUrl = this.checkValidUrl.bind(this)
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
-  }
-
-  hashUrl(url) {
-    // a function that hashes the incoming url, sets the hashed value to state
-    var hashed = md5(url)
-    return hashed
   }
 
   checkValidUrl(url) {
@@ -41,33 +33,34 @@ class CreateUrl extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var hashed = this.hashUrl(this.state.originalurl)
     if (this.checkValidUrl(this.state.originalurl)) {
       axios.post('/', {
         owner: this.state.owner,
-        originalurl: this.state.originalurl,
-        // shorturl: this.state.shorturl,
-        shorturl: hashed,
-        urlnickname: this.state.urlnickname
+        originalurl: this.state.originalurl
+        // urlnickname: this.state.urlnickname
       })
       .then((results) => {
         // attach new record to user table under urls array
+        this.setState({validationError: ''})
         this.props.getAllUrls()
       })
       .catch((err) => {
         console.error(err)
       })
     } else {
-      console.log('didnt pass url validation')
+      this.setState({validationError: '**invalid url, must use http or https'})
     }
   }
 
   render() {
     return(
       <div>
-        <input type="text" name="originalurl" placeholder="paste your long url here" value={this.state.originalurl} onChange={this.handleChange}/>
+      <div className="create-url-container">
+        <input type="text" name="originalurl" placeholder="paste your url here, http or https required" value={this.state.originalurl} onChange={this.handleChange}/>
         {/* <input type="text" name="urlnickname" value={this.state.urlnickname} onChange={this.handleChange}/> */}
         <button onClick={this.handleSubmit}>shorten</button>
+      </div>
+      <p className="create-url-error">{this.state.validationError}</p>
       </div>
     )
   }

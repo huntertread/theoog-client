@@ -37,7 +37,6 @@ class Register extends Component {
                 email: this.state.email
               })
               .then((results) => {
-                // console.log(results.data[0])
                 this.props.setUser(results.data[0].username, results.data[0].id)
                 this.props.setLogIn()
               })
@@ -71,31 +70,16 @@ class Register extends Component {
         <div className="registration-form-container">
           <form className="registration-form-content">
             <h2>REGISTER</h2>
-            <label>
-              username:
-              <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-            </label><br/>
+            <input name="username" type="text" placeholder="desired username" value={this.state.username} onChange={this.handleChange}/>
             <p className="reg-error">{this.state.unError}</p>
-            <label>
-              email:
-              <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/>
-            </label><br/>
-            <label>
-              confirm email:
-              <input name="emailconfirm" type="text" value={this.state.emailconfirm} onChange={this.handleChange}/>
-            </label><br/>
+            <input name="email" type="text" placeholder="email" value={this.state.email} onChange={this.handleChange}/>
+            <input name="emailconfirm" type="text" placeholder="confirm email" value={this.state.emailconfirm} onChange={this.handleChange}/>
             <p className="reg-error">{this.state.emailError}</p>
-            <label>
-              password:
-              <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-            </label><br/>
-            <label>
-              confirm password:
-              <input name="passconfirm" type="password" value={this.state.passconfirm} onChange={this.handleChange}/>
-            </label><br/>
+            <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
+            <input name="passconfirm" type="password" placeholder="confirm password" value={this.state.passconfirm} onChange={this.handleChange}/>
             <p className="reg-error">{this.state.pwError}</p>
-            <button onClick={this.handleSubmit}>submit</button>
-            <button onClick={this.props.setRegistered}>cancel</button>
+            <button className="registration-button" onClick={this.handleSubmit}>submit</button>
+            <button className="registration-button" onClick={this.props.setRegistered}>cancel</button>
           </form>
         </div>
       )

@@ -30,7 +30,7 @@ class LogIn extends Component {
           this.props.setLogIn()
           this.props.getAllUrls()
         } else {
-          this.setState({validationMessage: '**username or password is incorrect'})
+          this.setState({validationMessage: '**incorrect username or password'})
         }
       })
       .catch((err) => {

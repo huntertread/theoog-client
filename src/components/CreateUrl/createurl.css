@@ -1,0 +1,17 @@
+.create-url-container {
+  display: flex;
+  justify-content: center;
+}
+
+.create-url-container input {
+  width: 40%;
+  height: 15px;
+  max-width: 400px;
+  min-width: 200px;
+  margin-top: 8px;
+}
+
+.create-url-error {
+  color: red;
+  margin: 0px;
+}

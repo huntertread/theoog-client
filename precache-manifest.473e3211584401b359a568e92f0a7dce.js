@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8ad4e12ca0773db4c037e24c10361319",
+    "revision": "bf936d3949f57e388014eaeef06f8262",
     "url": "/wzrd-client/index.html"
   },
   {
-    "revision": "3ebde2ff33166dcc5e4f",
+    "revision": "39be7657dc4a3d6beb42",
     "url": "/wzrd-client/static/css/main.fb8f9728.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wzrd-client/static/js/2.a916be23.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3ebde2ff33166dcc5e4f",
-    "url": "/wzrd-client/static/js/main.b1228fed.chunk.js"
+    "revision": "39be7657dc4a3d6beb42",
+    "url": "/wzrd-client/static/js/main.d323528a.chunk.js"
   },
   {
     "revision": "22cbc77a8c0f27c8308f",

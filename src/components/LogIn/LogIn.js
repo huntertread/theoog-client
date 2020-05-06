@@ -21,7 +21,7 @@ class LogIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.get(`/getExistingUser/${this.state.username.toLowerCase()}`)
+    axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})

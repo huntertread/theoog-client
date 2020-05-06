@@ -47,8 +47,10 @@ class App extends Component {
 
   getRedirect() {
     const noHash = window.location.hash.substring(1)
-    axios.get(`/${noHash}`)
+    axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/${noHash}`)
       .then((results) => {
+        console.log(noHash)
+        console.log(results.data)
         window.location.href = results.data[0].originalurl
       })
       .catch((err) => {
@@ -57,7 +59,7 @@ class App extends Component {
   }
 
   getAllUrls() {
-    axios.get(`/getallurls/${this.state.userid}`)
+    axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/getallurls/${this.state.userid}`)
       .then((response) => {
         this.setState({urls: response.data.reverse()})
       })
@@ -89,7 +91,7 @@ class App extends Component {
     event.preventDefault()
     if (this.checkValidUrl(this.state.anonUrlSubmit)) {
       var hashed = this.hashUrl(this.state.anonUrlSubmit)
-      axios.post('/', {
+      axios.post('http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/', {
         owner: this.state.userid,
         originalurl: this.state.anonUrlSubmit,
         shorturl: hashed

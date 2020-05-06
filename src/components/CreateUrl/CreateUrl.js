@@ -34,7 +34,7 @@ class CreateUrl extends Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.checkValidUrl(this.state.originalurl)) {
-      axios.post('/', {
+      axios.post('http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/', {
         owner: this.state.owner,
         originalurl: this.state.originalurl
         // urlnickname: this.state.urlnickname

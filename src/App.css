@@ -48,10 +48,12 @@ img {
 }
 
 .logged-out-content {
+  /* height: 100vh; */
   margin-bottom: 50px;
 }
 
 .logged-in-content {
+  /* height: 120vh; */
   margin-bottom: 50px;
 }
 

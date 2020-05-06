@@ -26,12 +26,12 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.get(`/getExistingUser/${this.state.username.toLowerCase()}`)
+    axios.get(`ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {
           if (this.state.password === this.state.passconfirm) {
             if (this.state.email === this.state.emailconfirm) {
-              axios.post('/register', {
+              axios.post('ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/register', {
                 username: this.state.username.toLowerCase(),
                 password: md5(this.state.password),
                 email: this.state.email

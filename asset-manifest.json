@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/wzrd-client/static/css/main.fb8f9728.chunk.css",
-    "main.js": "/wzrd-client/static/js/main.8df630b8.chunk.js",
-    "main.js.map": "/wzrd-client/static/js/main.8df630b8.chunk.js.map",
+    "main.js": "/wzrd-client/static/js/main.b1228fed.chunk.js",
+    "main.js.map": "/wzrd-client/static/js/main.b1228fed.chunk.js.map",
     "runtime-main.js": "/wzrd-client/static/js/runtime-main.7c6776b3.js",
     "runtime-main.js.map": "/wzrd-client/static/js/runtime-main.7c6776b3.js.map",
     "static/js/2.a916be23.chunk.js": "/wzrd-client/static/js/2.a916be23.chunk.js",
     "static/js/2.a916be23.chunk.js.map": "/wzrd-client/static/js/2.a916be23.chunk.js.map",
     "index.html": "/wzrd-client/index.html",
-    "precache-manifest.ebf8658d9e621ad7620edf93ba769dab.js": "/wzrd-client/precache-manifest.ebf8658d9e621ad7620edf93ba769dab.js",
+    "precache-manifest.132b01ea2bc852b667732fdd05c077c9.js": "/wzrd-client/precache-manifest.132b01ea2bc852b667732fdd05c077c9.js",
     "service-worker.js": "/wzrd-client/service-worker.js",
     "static/css/main.fb8f9728.chunk.css.map": "/wzrd-client/static/css/main.fb8f9728.chunk.css.map",
     "static/js/2.a916be23.chunk.js.LICENSE.txt": "/wzrd-client/static/js/2.a916be23.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.7c6776b3.js",
     "static/js/2.a916be23.chunk.js",
     "static/css/main.fb8f9728.chunk.css",
-    "static/js/main.8df630b8.chunk.js"
+    "static/js/main.b1228fed.chunk.js"
   ]
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/wzrd-client/precache-manifest.aacfc3dfbe1bc0907c870ec7a82ab34e.js"
+  "/wzrd-client/precache-manifest.ebf8658d9e621ad7620edf93ba769dab.js"
 );
 
 self.addEventListener('message', (event) => {

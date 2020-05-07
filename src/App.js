@@ -131,14 +131,14 @@ class App extends Component {
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
           <p>original url: {this.state.anonUrlReturn.originalurl}</p>
           <p>your short url: <strong>localhost:3000/#{this.state.anonUrlReturn.id}</strong></p>
-          <button onClick={() => navigator.clipboard.writeText(`localhost:3000/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
+          <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
         </div>
       }
       content =
         <div className="logged-out-content">
           <div className="logged-out-header">
             <div className="header-logo">
-              <p>OOGLA</p>
+              <p>THE OOG</p>
             </div>
             <div className="header-login-register">
               <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
@@ -146,7 +146,7 @@ class App extends Component {
             </div>
           </div>
           <img alt="" src="https://cdn1.vectorstock.com/i/1000x1000/36/85/caveman-with-club-vector-163685.jpg"/>
-          <p>A no frills URL shortener. Takes any URL and creates a shorter redirect.</p>
+          <p>A URL shortener. Takes any URL and creates a shorter redirect.</p>
           <p>Try it out!</p>
           <form>
           <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here, http or https required" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>

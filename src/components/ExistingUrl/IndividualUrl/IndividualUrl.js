@@ -5,9 +5,9 @@ const IndividualUrl = ({ urlproperties }) => {
   return(
     <div className="individual-url">
       <p>original url: <em>{urlproperties.originalurl}</em></p>
-      <p>short url: <strong>localhost:3000/#{urlproperties.id}</strong></p>
+      <p>short url: <strong>theoog.net/#{urlproperties.id}</strong></p>
       {/* <p>{urlproperties.urlnickname}</p> */}
-      <button onClick={() => navigator.clipboard.writeText(`localhost:3000/#${urlproperties.id}`)}>copy to clipboard</button>
+      <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${urlproperties.id}`)}>copy to clipboard</button>
     </div>
   )
 }

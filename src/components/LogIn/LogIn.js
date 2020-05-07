@@ -3,7 +3,7 @@ import md5 from 'md5'
 import axios from 'axios'
 import './login.css'
 
-axios.defaults.baseurl = "http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333"
+axios.defaults.baseurl = "https://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333"
 
 class LogIn extends Component {
   constructor(props) {

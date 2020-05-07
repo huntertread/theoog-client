@@ -130,7 +130,7 @@ class App extends Component {
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
           <p>original url: {this.state.anonUrlReturn.originalurl}</p>
-          <p>your short url: <strong>localhost:3000/#{this.state.anonUrlReturn.id}</strong></p>
+          <p>your short url: <strong>theoog.net/#{this.state.anonUrlReturn.id}</strong></p>
           <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
         </div>
       }
@@ -160,7 +160,7 @@ class App extends Component {
     return (
       <div className="App">
         {content}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }

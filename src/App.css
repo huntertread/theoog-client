@@ -10,6 +10,8 @@
 .url-validation-error{
   color: red;
   margin: 0px;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .logged-out-header {

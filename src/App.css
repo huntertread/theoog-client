@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+p {
+  font-weight: bold;
+}
+
 .logged-out-content img {
   margin-top: 10vh;
   max-width: 450px;
@@ -33,13 +37,14 @@
 }
 
 .logged-out-content {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   height: 100vh;
 }
 
 .logged-in-content {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   margin-bottom: 50px;
+  height: 100vh;
 }
 
 .header-logo {
@@ -54,6 +59,14 @@
 .long-input {
   width: 50%;
   max-width: 700px;
+}
+
+.original-url-container p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 30vw;
+  margin: auto;
 }
 
 button {

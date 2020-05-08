@@ -49,8 +49,8 @@ class App extends Component {
     const noHash = window.location.hash.substring(1)
     axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/${noHash}`)
       .then((results) => {
-        console.log(noHash)
-        console.log(results.data)
+        // console.log(noHash)
+        // console.log(results.data)
         window.location.href = results.data[0].originalurl
       })
       .catch((err) => {
@@ -129,7 +129,9 @@ class App extends Component {
         anonUrl =
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
-          <p>original url: {this.state.anonUrlReturn.originalurl}</p>
+          <div className="original-url-container">
+            <p>original url: <em>{this.state.anonUrlReturn.originalurl}</em></p>
+          </div>
           <p>your short url: <strong>theoog.net/#{this.state.anonUrlReturn.id}</strong></p>
           <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
         </div>

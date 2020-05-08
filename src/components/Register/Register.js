@@ -78,8 +78,10 @@ class Register extends Component {
             <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
             <input name="passconfirm" type="password" placeholder="confirm password" value={this.state.passconfirm} onChange={this.handleChange}/>
             <p className="reg-error">{this.state.pwError}</p>
-            <button className="registration-button" onClick={this.handleSubmit}>submit</button>
-            <button className="registration-button" onClick={this.props.setRegistered}>cancel</button>
+            <div className="register-button-container">
+              <button className="registration-button" onClick={this.handleSubmit}>submit</button>
+              <button className="registration-button" onClick={this.props.setRegistered}>cancel</button>
+            </div>
           </form>
         </div>
       )

@@ -53,7 +53,7 @@ class LogIn extends Component {
     } else if (this.props.loggedIn === true) {
       return(
         <div className="logout-container">
-          <p>{`hey there, ${this.props.activeUserName}!`}</p>
+          {/* <p>{`hey there, ${this.props.activeUserName}!`}</p> */}
           <button onClick={() => this.props.setLogIn()}>log out</button>
         </div>
       )

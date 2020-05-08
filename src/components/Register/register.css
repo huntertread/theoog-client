@@ -24,9 +24,12 @@
   margin: auto;
 }
 
+.register-button-container {
+  margin-bottom: 10px;
+}
+
 .registration-button {
   width: 100px;
-  margin: auto;
 }
 
 .register-button {

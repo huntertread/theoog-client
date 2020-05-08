@@ -2,11 +2,8 @@
   text-align: center;
 }
 
-img {
-  margin-top: 50px;
-  width: 40%;
-  height: 25%;
-  max-height: 450px;
+.logged-out-content img {
+  margin-top: 10vh;
   max-width: 450px;
 }
 
@@ -33,6 +30,16 @@ img {
   width: 100%;
 }
 
+.logged-out-content {
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 100vh;
+}
+
+.logged-in-content {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 50px;
+}
+
 .header-logo {
   margin-left: 10px;
   height: 20px;
@@ -47,22 +54,15 @@ img {
   max-width: 700px;
 }
 
-.logged-out-content {
-  /* height: 100vh; */
-  margin-bottom: 50px;
-}
-
-.logged-in-content {
-  /* height: 120vh; */
-  margin-bottom: 50px;
-}
-
 button {
-  background-color: #ebba34;
+  background-color: #cb4ed9;
   margin: 10px;
+  border: none;
+  box-shadow: 2px 2px black;
+  border-radius: 2px;
 }
 
 button:hover {
   cursor: pointer;
-  color: white;
+  background-color: white;
 }

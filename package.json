@@ -2,7 +2,6 @@
   "name": "wzrd-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/",
   "homepage": "https://theoog.net",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

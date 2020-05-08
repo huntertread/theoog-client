@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ebba34;
+  /* background-color: #ebba34; */
+  background-image: url('./images/cheetah_fur.jpg');
 }
 
 code {

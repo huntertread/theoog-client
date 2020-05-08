@@ -145,8 +145,8 @@ class App extends Component {
               <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
             </div>
           </div>
-          <img alt="" src="https://cdn1.vectorstock.com/i/1000x1000/36/85/caveman-with-club-vector-163685.jpg"/>
-          <p>A URL shortener. Takes any URL and creates a shorter redirect.</p>
+          <img alt="" src="./images/the_oog.png"/>
+          <p>The Oog is a URL shortener.</p>
           <p>Try it out!</p>
           <form>
           <input name="anonUrlSubmit" className="long-input" type="text" placeholder="paste your url here, http or https required" value={this.state.anonUrlSubmit} onChange={this.handleChange}/>

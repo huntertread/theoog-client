@@ -9,7 +9,7 @@ const IndividualUrl = ({ urlproperties }) => {
       </div>
       <p>short url: <strong>theoog.net/#{urlproperties.id}</strong></p>
       {/* <p>{urlproperties.urlnickname}</p> */}
-      <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${urlproperties.id}`)}>copy to clipboard</button>
+      <button className="copy-button" onClick={() => navigator.clipboard.writeText(`theoog.net/#${urlproperties.id}`)}>copy to clipboard</button>
     </div>
   )
 }

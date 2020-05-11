@@ -47,7 +47,6 @@ class App extends Component {
 
   getRedirect() {
     const noHash = window.location.hash.substring(1)
-    // axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/${noHash}`)
     axios.get(`http://api.theoog.net:3333/${noHash}`)
       .then((results) => {
         window.location.href = results.data[0].originalurl
@@ -58,7 +57,7 @@ class App extends Component {
   }
 
   getAllUrls() {
-    axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/getallurls/${this.state.userid}`)
+    axios.get(`http://api.theoog.net:3333/getallurls/${this.state.userid}`)
       .then((response) => {
         this.setState({urls: response.data.reverse()})
       })
@@ -90,7 +89,7 @@ class App extends Component {
     event.preventDefault()
     if (this.checkValidUrl(this.state.anonUrlSubmit)) {
       var hashed = this.hashUrl(this.state.anonUrlSubmit)
-      axios.post('http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/', {
+      axios.post('http://api.theoog.net:3333/', {
         owner: this.state.userid,
         originalurl: this.state.anonUrlSubmit,
         shorturl: hashed

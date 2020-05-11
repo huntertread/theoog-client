@@ -48,10 +48,8 @@ class App extends Component {
   getRedirect() {
     const noHash = window.location.hash.substring(1)
     // axios.get(`http://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333/${noHash}`)
-    axios.get(`api.theoog.net:3333/${noHash}`)
+    axios.get(`/${noHash}`)
       .then((results) => {
-        // console.log(noHash)
-        // console.log(results.data)
         window.location.href = results.data[0].originalurl
       })
       .catch((err) => {

@@ -56,9 +56,11 @@ class CreateUrl extends Component {
     return(
       <div>
       <div className="create-url-container">
+        <form>
         <input type="text" name="originalurl" placeholder="paste your url here, http or https required" value={this.state.originalurl} onChange={this.handleChange}/>
         {/* <input type="text" name="urlnickname" value={this.state.urlnickname} onChange={this.handleChange}/> */}
         <button onClick={this.handleSubmit}>shorten</button>
+        </form>
       </div>
       <p className="create-url-error">{this.state.validationError}</p>
       </div>

@@ -132,16 +132,18 @@ class App extends Component {
           <div className="original-url-container">
             <p>original url: <em>{this.state.anonUrlReturn.originalurl}</em></p>
           </div>
-          <p>your short url: <strong>theoog.net/#{this.state.anonUrlReturn.id}</strong></p>
-          <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
+          <div className="short-url-container">
+            <p>your short url: <strong>theoog.net/#{this.state.anonUrlReturn.id}</strong></p>
+            <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
+          </div>
         </div>
       }
       content =
         <div className="logged-out-content">
           <div className="logged-out-header">
-            <div className="header-logo">
+            {/* <div className="header-logo">
               <p>THE OOG</p>
-            </div>
+            </div> */}
             <div className="header-login-register">
               <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
               <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>

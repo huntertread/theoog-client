@@ -6,6 +6,10 @@ p {
   font-weight: bold;
 }
 
+/* strong {
+  color: red;
+} */
+
 .logged-out-content img {
   margin-top: 10vh;
   max-width: 450px;
@@ -13,13 +17,16 @@ p {
 
 .url-validation-error{
   color: red;
-  margin: 0px;
+  margin: 0px auto;
   font-size: 10px;
   font-weight: bold;
+  max-width: 785px;
+  text-align: left;
 }
 
 .logged-out-header {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   flex-wrap: wrap;
   background-color: rgba(255, 255, 255, .9);
@@ -49,17 +56,17 @@ p {
   height: 100%;
 }
 
-.header-logo {
+/* .header-logo {
   margin-left: 10px;
   height: 20px;
-}
+} */
 
 .header-login-register {
   display: flex;
 }
 
 .long-input {
-  width: 50%;
+  width: 75%;
   max-width: 700px;
 }
 
@@ -69,6 +76,7 @@ p {
   text-overflow: ellipsis;
   width: 30vw;
   margin: auto;
+  max-width: 400px;
 }
 
 button {

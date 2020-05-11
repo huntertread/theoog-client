@@ -11,5 +11,7 @@
 
 .unpw-validation-error{
   color: red;
-  margin: 0px;
+  margin: 0px 0px 0px 5px;
+  text-align: left;
+  font-size: 10px;
 }

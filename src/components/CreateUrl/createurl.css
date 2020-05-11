@@ -7,12 +7,15 @@
 .create-url-container input {
   width: 40%;
   height: 15px;
-  max-width: 400px;
-  min-width: 200px;
+  max-width: 700px;
+  min-width: 380px;
   margin-top: 8px;
 }
 
 .create-url-error {
   color: red;
-  margin: 0px;
+  margin: 0px auto;
+  max-width: 460px;
+  text-align: left;
+  font-size: 12px;
 }

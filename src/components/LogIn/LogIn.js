@@ -44,9 +44,11 @@ class LogIn extends Component {
     if (this.props.loggedIn === false) {
       return(
         <div className="login-container">
-          <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
-          <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
-          <button onClick={this.handleSubmit}>log in</button>
+          <form>
+            <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
+            <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
+            <button onClick={this.handleSubmit}>log in</button>
+          </form>
           <p className="unpw-validation-error">{this.state.validationMessage}</p>
         </div>
       )

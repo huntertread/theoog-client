@@ -34,7 +34,7 @@ class CreateUrl extends Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.checkValidUrl(this.state.originalurl)) {
-      axios.post('http://api.theoog.net:3333/', {
+      axios.post('https://api.theoog.net/', {
         owner: this.state.owner,
         originalurl: this.state.originalurl
         // urlnickname: this.state.urlnickname

@@ -26,12 +26,12 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.get(`http://api.theoog.net:3333/getExistingUser/${this.state.username.toLowerCase()}`)
+    axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {
           if (this.state.password === this.state.passconfirm) {
             if (this.state.email === this.state.emailconfirm) {
-              axios.post('http://api.theoog.net:3333/register', {
+              axios.post('https://api.theoog.net/register', {
                 username: this.state.username.toLowerCase(),
                 password: md5(this.state.password),
                 email: this.state.email

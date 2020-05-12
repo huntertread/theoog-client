@@ -25,7 +25,7 @@ class LogIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.get(`http://api.theoog.net:443/getExistingUser/${this.state.username.toLowerCase()}`)
+    axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})

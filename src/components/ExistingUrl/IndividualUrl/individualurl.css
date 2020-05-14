@@ -10,8 +10,14 @@
   height: 100px;
 }
 
-.original-url-container {
+@media (max-device-width: 400px) {
+  .individual-url {
+    margin: 20px 5px;
+  }
+}
 
+.original-url-container {
+  margin-top: 20px;
 }
 
 .copy-button {
@@ -23,4 +29,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  margin-bottom: 10px;
 }
+
+/* original-url-container p styles are located in App.css */

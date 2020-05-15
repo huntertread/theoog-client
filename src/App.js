@@ -4,6 +4,7 @@ import Register from './components/Register/Register.js'
 import CreateUrl from './components/CreateUrl/CreateUrl.js'
 import ExistingUrlContainer from './components/ExistingUrl/ExistingUrlContainer/ExistingUrlContainer.js'
 import Footer from './components/Footer/Footer.js'
+import MediaQuery from 'react-responsive'
 import axios from 'axios'
 import md5 from 'md5'
 import './App.css'
@@ -139,13 +140,15 @@ class App extends Component {
       content =
         <div className="logged-out-content">
           <div className="logged-out-header">
-            {/* <div className="header-logo">
-              <p>THE OOG</p>
-            </div> */}
-            <div className="header-login-register">
-              <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-              <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
-            </div>
+            <MediaQuery minDeviceWidth={500}>
+              <div className="header-login-register">
+                <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+                <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+              </div>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={500}>
+              <i className="fa fa-bars"></i>
+            </MediaQuery>
           </div>
           <img alt="" src="./images/the_oog.png"/>
           <p>The Oog is a URL shortener.</p>

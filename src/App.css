@@ -82,6 +82,13 @@ p {
   max-width: 400px;
 }
 
+i {
+  color: #cb4ed9;
+  transform: scale(1.3);
+  margin: 8px;
+  /* text-shadow: 1px 1px black; */
+}
+
 button {
   background-color: #cb4ed9;
   margin: 10px;

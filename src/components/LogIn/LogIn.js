@@ -46,7 +46,7 @@ class LogIn extends Component {
     if (this.props.loggedIn === false) {
       return(
         <div className="login-container">
-          <form>
+          <form className="login-form-content">
             <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
             <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
             <button onClick={this.handleSubmit}>log in</button>

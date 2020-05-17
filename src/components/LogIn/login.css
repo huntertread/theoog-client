@@ -2,6 +2,23 @@
   margin: 5px;
 }
 
+@media (max-device-width: 500px) {
+  .login-form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 60px;
+  }
+  .login-form-content input {
+    width: 200px;
+    margin: 5px auto;
+  }
+  .login-form-content button {
+    width: 150px;
+    margin: 20px auto;
+  }
+}
+
 .logout-container {
   width: 100vw;
   display: flex;

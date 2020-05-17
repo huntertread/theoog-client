@@ -21,7 +21,8 @@ class App extends Component {
       anonUrlSubmit: '',
       urlError: '',
       anonUrlReturn: [],
-      urls: []
+      urls: [],
+      mobileNavOpen: false
     }
     this.setLogIn = this.setLogIn.bind(this)
     this.setRegistered = this.setRegistered.bind(this)
@@ -32,6 +33,7 @@ class App extends Component {
     this.hashUrl = this.hashUrl.bind(this)
     this.getRedirect = this.getRedirect.bind(this)
     this.checkValidUrl = this.checkValidUrl.bind(this)
+    this.clickMobileNav = this.clickMobileNav.bind(this)
   }
 
   setLogIn() {
@@ -86,6 +88,10 @@ class App extends Component {
     }
   }
 
+  clickMobileNav() {
+    this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+  }
+
   submitAnon(event) {
     event.preventDefault()
     if (this.checkValidUrl(this.state.anonUrlSubmit)) {
@@ -137,6 +143,20 @@ class App extends Component {
           </div>
         </div>
       }
+      let mobileNav
+      if (this.state.mobileNavOpen === true) {
+        mobileNav = 
+          <div className="mobile-nav-open">
+            <div className="mobile-nav-icon-container">
+              <i className="fa fa-close" onClick={this.clickMobileNav}></i>
+            </div>
+            <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getAllUrls={this.getAllUrls} activeUserName={this.state.username}/>
+          </div>
+      } else if (this.state.mobileNavOpen === false) {
+        mobileNav =
+          <i className="fa fa-bars" onClick={this.clickMobileNav}></i>
+      }
       content =
         <div className="logged-out-content">
           <div className="logged-out-header">
@@ -147,7 +167,7 @@ class App extends Component {
               </div>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={500}>
-              <i className="fa fa-bars"></i>
+              {mobileNav}
             </MediaQuery>
           </div>
           <img alt="" src="./images/the_oog.png"/>

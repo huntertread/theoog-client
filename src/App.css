@@ -82,6 +82,17 @@ p {
   max-width: 400px;
 }
 
+.mobile-nav-open {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.mobile-nav-icon-container {
+  text-align: right;
+}
+
 i {
   color: #cb4ed9;
   transform: scale(1.3);

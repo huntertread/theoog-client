@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import md5 from 'md5'
 import axios from 'axios'
 import './login.css'
-// import https from 'https'
-
-// axios.defaults.baseurl = "https://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333"
-// axios.defaults.baseurl = "api.theoog.net:3333"
 
 class LogIn extends Component {
   constructor(props) {
@@ -57,7 +53,6 @@ class LogIn extends Component {
     } else if (this.props.loggedIn === true) {
       return(
         <div className="logout-container">
-          {/* <p>{`hey there, ${this.props.activeUserName}!`}</p> */}
           <button onClick={() => this.props.setLogIn()}>log out</button>
         </div>
       )

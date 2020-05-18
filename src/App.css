@@ -6,10 +6,6 @@ p {
   font-weight: bold;
 }
 
-/* strong {
-  color: red;
-} */
-
 .logged-out-content img {
   margin-top: 10vh;
   width: 90%;
@@ -58,11 +54,6 @@ p {
   height: 100%;
 }
 
-/* .header-logo {
-  margin-left: 10px;
-  height: 20px;
-} */
-
 .header-login-register {
   display: flex;
 }
@@ -97,7 +88,6 @@ i {
   color: #cb4ed9;
   transform: scale(1.3);
   margin: 8px;
-  /* text-shadow: 1px 1px black; */
 }
 
 button {

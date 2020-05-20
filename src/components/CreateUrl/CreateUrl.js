@@ -42,7 +42,7 @@ class CreateUrl extends Component {
       .then((results) => {
         // attach new record to user table under urls array
         this.setState({validationError: ''})
-        this.props.getAllUrls()
+        this.props.getUserUrls()
       })
       .catch((err) => {
         console.error(err)

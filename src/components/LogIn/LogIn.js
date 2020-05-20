@@ -28,7 +28,7 @@ class LogIn extends Component {
         } else if (results.data[0].password === md5(this.state.password)) {
           this.props.setUser(results.data[0].username, results.data[0].id)
           this.props.setLogIn()
-          this.props.getAllUrls()
+          this.props.getUserUrls()
         } else {
           this.setState({validationMessage: '**incorrect username or password'})
         }

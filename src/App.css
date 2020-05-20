@@ -84,6 +84,15 @@ p {
   text-align: right;
 }
 
+.create-an-account-text {
+  text-decoration: underline;
+}
+
+.create-an-account-text:hover {
+  cursor: pointer;
+  color: #cb4ed9;
+}
+
 i {
   color: #cb4ed9;
   transform: scale(1.3);

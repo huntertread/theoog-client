@@ -38,6 +38,9 @@ class App extends Component {
   }
 
   setRegistered() {
+    if (this.state.mobileNavOpen === false) {
+      this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+    }
     this.setState({registered: !this.state.registered})
   }
 

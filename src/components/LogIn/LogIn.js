@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import md5 from 'md5'
 import axios from 'axios'
 import './login.css'
-// import https from 'https'
-
-// axios.defaults.baseurl = "https://ec2-54-151-33-195.us-west-1.compute.amazonaws.com:3333"
-// axios.defaults.baseurl = "api.theoog.net:3333"
 
 class LogIn extends Component {
   constructor(props) {
@@ -32,7 +28,7 @@ class LogIn extends Component {
         } else if (results.data[0].password === md5(this.state.password)) {
           this.props.setUser(results.data[0].username, results.data[0].id)
           this.props.setLogIn()
-          this.props.getAllUrls()
+          this.props.getUserUrls()
         } else {
           this.setState({validationMessage: '**incorrect username or password'})
         }
@@ -46,7 +42,7 @@ class LogIn extends Component {
     if (this.props.loggedIn === false) {
       return(
         <div className="login-container">
-          <form>
+          <form className="login-form-content">
             <input name="username" type="text" placeholder="username" value={this.state.username} onChange={this.handleChange}/>
             <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
             <button onClick={this.handleSubmit}>log in</button>
@@ -57,7 +53,6 @@ class LogIn extends Component {
     } else if (this.props.loggedIn === true) {
       return(
         <div className="logout-container">
-          {/* <p>{`hey there, ${this.props.activeUserName}!`}</p> */}
           <button onClick={() => this.props.setLogIn()}>log out</button>
         </div>
       )

@@ -6,10 +6,6 @@ p {
   font-weight: bold;
 }
 
-/* strong {
-  color: red;
-} */
-
 .logged-out-content img {
   margin-top: 10vh;
   width: 90%;
@@ -58,11 +54,6 @@ p {
   height: 100%;
 }
 
-/* .header-logo {
-  margin-left: 10px;
-  height: 20px;
-} */
-
 .header-login-register {
   display: flex;
 }
@@ -80,6 +71,32 @@ p {
   min-width: 310px;
   margin: auto;
   max-width: 400px;
+}
+
+.mobile-nav-open {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.mobile-nav-icon-container {
+  text-align: right;
+}
+
+.create-an-account-text {
+  text-decoration: underline;
+}
+
+.create-an-account-text:hover {
+  cursor: pointer;
+  color: #cb4ed9;
+}
+
+i {
+  color: #cb4ed9;
+  transform: scale(1.3);
+  margin: 8px;
 }
 
 button {

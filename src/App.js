@@ -28,7 +28,6 @@ class App extends Component {
     this.getUserUrls = this.getUserUrls.bind(this)
     this.submitAnon = this.submitAnon.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    // this.getRedirect = this.getRedirect.bind(this)
     this.checkValidUrl = this.checkValidUrl.bind(this)
     this.clickMobileNav = this.clickMobileNav.bind(this)
   }
@@ -47,17 +46,6 @@ class App extends Component {
   setUser(username, userid) {
     this.setState({username: username, userid: userid})
   }
-
-  // getRedirect() {
-  //   const noHash = window.location.hash.substring(1)
-  //   axios.get(`https://api.theoog.net/${noHash}`)
-  //     .then((results) => {
-  //       window.location.href = results.data[0].originalurl
-  //     })
-  //     .catch((err) => {
-  //       console.error(err)
-  //     })
-  // }
 
   getUserUrls() {
     axios.get(`https://api.theoog.net/getallurls/${this.state.userid}`)
@@ -103,13 +91,8 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   if (window.location.hash !== '') {
-  //     this.getRedirect()
-  //   }
-  // }
-
   render() {
+
     let loggedInContent = () => (
       <div className="logged-in-content">
         <div className="logged-in-header">
@@ -121,7 +104,7 @@ class App extends Component {
       </div>
     );
 
-    const loggedOutContent = () => {
+    const loggedOutContent = () => { 
       const anonUrl = (
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
@@ -134,7 +117,6 @@ class App extends Component {
           </div>
         </div>
       );
-
       const mobileNav = () => {
         return this.state.mobileNavOpen === true ? (
           // nav is open
@@ -150,8 +132,8 @@ class App extends Component {
           <i className="fa fa-bars" onClick={this.clickMobileNav}></i>
         )
       };
-
-      return <div className="logged-out-content">
+      return (
+        <div className="logged-out-content">
           <div className="logged-out-header">
             <MediaQuery minDeviceWidth={500}>
               <div className="header-login-register">
@@ -174,13 +156,14 @@ class App extends Component {
           {/* logged out, url has been shortened and returned */}
           {this.state.anonUrlReturn.length !== 0  ? anonUrl : null}
         </div>
-
+      )
     }
     return (
       <div className="App">
         {this.state.loggedIn === true ? loggedInContent() : loggedOutContent()};
       </div>
     )
+
   }
 }
 

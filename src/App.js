@@ -110,24 +110,19 @@ class App extends Component {
   }
 
   render() {
-    let content;
-    // logged in view
-    if (this.state.loggedIn === true) {
-      content =
-        <div className="logged-in-content">
-          <div className="logged-in-header">
-            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
-          </div>
-          <CreateUrl getUserUrls={this.getUserUrls} username={this.state.username} userid={this.state.userid}/>
-          <h1>{this.state.username}'s urls:</h1>
-          <ExistingUrlContainer urls={this.state.urls}/>
+    let loggedInContent = () => (
+      <div className="logged-in-content">
+        <div className="logged-in-header">
+          <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
         </div>
-    // logged out view
-    } else if (this.state.loggedIn === false) {
-      let anonUrl
-      // logged out, url has been shortened and returned
-      if (this.state.anonUrlReturn.length !== 0) {
-        anonUrl =
+        <CreateUrl getUserUrls={this.getUserUrls} username={this.state.username} userid={this.state.userid}/>
+        <h1>{this.state.username}'s urls:</h1>
+        <ExistingUrlContainer urls={this.state.urls}/>
+      </div>
+    );
+
+    const loggedOutContent = () => {
+      const anonUrl = (
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
           <div className="original-url-container">
@@ -138,26 +133,25 @@ class App extends Component {
             <button onClick={() => navigator.clipboard.writeText(`theoog.net/#${this.state.anonUrlReturn.id}`)}>copy to clipboard</button>
           </div>
         </div>
-      }
-      let mobileNav
-      // logged out, mobile view, nav is open
-      if (this.state.mobileNavOpen === true) {
-        mobileNav = 
+      );
+
+      const mobileNav = () => {
+        return this.state.mobileNavOpen === true ? (
+          // nav is open
           <div className="mobile-nav-open">
-            <div className="mobile-nav-icon-container">
-              <i className="fa fa-close" onClick={this.clickMobileNav}></i>
+              <div className="mobile-nav-icon-container">
+                <i className="fa fa-close" onClick={this.clickMobileNav}></i>
+              </div>
+              <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+              <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
             </div>
-            <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
-          </div>
-      // logged out, mobile view, nav is closed
-      } else if (this.state.mobileNavOpen === false) {
-        mobileNav =
+        ) : (
+          // nav is closed
           <i className="fa fa-bars" onClick={this.clickMobileNav}></i>
-      }
-      // logged out, url has not yet been shortened
-      content =
-        <div className="logged-out-content">
+        )
+      };
+
+      return <div className="logged-out-content">
           <div className="logged-out-header">
             <MediaQuery minDeviceWidth={500}>
               <div className="header-login-register">
@@ -166,7 +160,7 @@ class App extends Component {
               </div>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={500}>
-              {mobileNav}
+              {mobileNav()}
             </MediaQuery>
           </div>
           <img alt="" src="./images/the_oog.png"/>
@@ -177,13 +171,14 @@ class App extends Component {
             <button onClick={this.submitAnon}>shorten</button>
           </form>
           <p className="url-validation-error">{this.state.urlError}</p>
-          {anonUrl}
+          {/* logged out, url has been shortened and returned */}
+          {this.state.anonUrlReturn.length !== 0  ? anonUrl : null}
         </div>
-    }
 
+    }
     return (
       <div className="App">
-        {content}
+        {this.state.loggedIn === true ? loggedInContent() : loggedOutContent()};
       </div>
     )
   }

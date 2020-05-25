@@ -28,7 +28,7 @@ class App extends Component {
     this.getUserUrls = this.getUserUrls.bind(this)
     this.submitAnon = this.submitAnon.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.getRedirect = this.getRedirect.bind(this)
+    // this.getRedirect = this.getRedirect.bind(this)
     this.checkValidUrl = this.checkValidUrl.bind(this)
     this.clickMobileNav = this.clickMobileNav.bind(this)
   }
@@ -48,16 +48,16 @@ class App extends Component {
     this.setState({username: username, userid: userid})
   }
 
-  getRedirect() {
-    const noHash = window.location.hash.substring(1)
-    axios.get(`https://api.theoog.net/${noHash}`)
-      .then((results) => {
-        window.location.href = results.data[0].originalurl
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+  // getRedirect() {
+  //   const noHash = window.location.hash.substring(1)
+  //   axios.get(`https://api.theoog.net/${noHash}`)
+  //     .then((results) => {
+  //       window.location.href = results.data[0].originalurl
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }
 
   getUserUrls() {
     axios.get(`https://api.theoog.net/getallurls/${this.state.userid}`)
@@ -103,11 +103,11 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    if (window.location.hash !== '') {
-      this.getRedirect()
-    }
-  }
+  // componentDidMount() {
+  //   if (window.location.hash !== '') {
+  //     this.getRedirect()
+  //   }
+  // }
 
   render() {
     let loggedInContent = () => (

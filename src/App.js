@@ -104,7 +104,7 @@ class App extends Component {
       </div>
     );
 
-    const loggedOutContent = () => { 
+    const loggedOutContent = () => {
       const anonUrl = (
         <div>
           <p>You wont have access to this URL if you make another or navigate away. Make sure to copy it now!</p>
@@ -160,7 +160,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {this.state.loggedIn === true ? loggedInContent() : loggedOutContent()};
+        {this.state.loggedIn === true ? loggedInContent() : loggedOutContent()}
       </div>
     )
 

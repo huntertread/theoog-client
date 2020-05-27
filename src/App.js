@@ -94,7 +94,7 @@ class App extends Component {
   render() {
 
     let loggedInContent = () => (
-      <div className="logged-in-content">
+      <div className="logged-in-content" test-data="logged-in-content">
         <div className="logged-in-header">
           <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
         </div>

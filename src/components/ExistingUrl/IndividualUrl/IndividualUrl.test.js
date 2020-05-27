@@ -4,5 +4,5 @@ import IndividualUrl from './IndividualUrl';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<IndividualUrl />, div);
+  ReactDOM.render(<IndividualUrl urlproperties={{originalurl: 'www', id: 1}} />, div);
 });

@@ -3,7 +3,7 @@ import App from './App'
 import axios from 'axios'
 
 const AppGateway = () => {
-  
+
   const getRedirect = () => {
     const noHash = window.location.hash.substring(1)
     axios.get(`https://api.theoog.net/${noHash}`)
@@ -23,9 +23,9 @@ const AppGateway = () => {
       )
     } else if (window.location.hash === '') {
       return <App />
-    } 
+    }
   }
-  
+
   return (
     <div>{directToAppOrRedirect()}</div>
   )

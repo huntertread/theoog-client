@@ -44,8 +44,7 @@ class LogIn extends Component {
       }
     })
       .then((results) => {
-        console.log('login post route results:', req.user)
-        console.log('session ID login', req.sessionID)
+        console.log('login post route results:', )
       })
       .catch((err) => {
         console.error(err)

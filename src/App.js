@@ -35,6 +35,8 @@ class App extends Component {
   setLogIn() {
     if (this.state.loggedIn === true) {
       axios.get('https://api.theoog.net/logout') // destorys cookie for passport session
+      console.log(req.sessionID)
+      console.log(req.user)
     }
     this.setState({loggedIn: !this.state.loggedIn})
   }

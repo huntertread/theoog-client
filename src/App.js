@@ -121,12 +121,12 @@ class App extends Component {
         return this.state.mobileNavOpen === true ? (
           // nav is open
           <div className="mobile-nav-open">
-              <div className="mobile-nav-icon-container">
-                <i className="fa fa-close" onClick={this.clickMobileNav}></i>
-              </div>
-              <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
-              <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
+            <div className="mobile-nav-icon-container">
+              <i className="fa fa-close" onClick={this.clickMobileNav}></i>
             </div>
+            <Register setRegistered={this.setRegistered} registered={this.state.registered} setLogIn={this.setLogIn} setUser={this.setUser}/>
+            <LogIn setLogIn={this.setLogIn} loggedIn={this.state.loggedIn} setUser={this.setUser} getUserUrls={this.getUserUrls} activeUserName={this.state.username}/>
+          </div>
         ) : (
           // nav is closed
           <i className="fa fa-bars" onClick={this.clickMobileNav}></i>

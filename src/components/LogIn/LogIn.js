@@ -21,6 +21,9 @@ class LogIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    console.log('login get request', axios.get('https;//api.theoog.net/login'))
+    
     axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {
         if (results.data[0] === undefined) {

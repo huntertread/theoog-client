@@ -24,9 +24,13 @@ class LogIn extends Component {
 
     // get login
     console.log('login get request') 
-    axios.get('https://api.theoog.net/login', {
-      username: this.state.username.toLowerCase(),
-      passowrd: this.state.password
+    axios({
+      method: 'get',
+      url: 'https://api.theoog.net/login',
+      data: {
+        username: this.state.username.toLowerCase(),
+        password: this.state.password
+      }
     })
       .then((results) => {
         console.log('login get route results', results)

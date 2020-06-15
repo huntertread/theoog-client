@@ -22,9 +22,24 @@ class LogIn extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log('login get request', axios.get('https://api.theoog.net/login'))
+    console.log('login get request') 
+    axios.get('https://api.theoog.net/login')
 
-    console.log('login post request', axios.post('https://api.theoog.net/login'))
+    console.log('login post request')
+    axios({
+      method: 'post',
+      url: 'https://api.theoog.net/login',
+      data: {
+        username: this.state.username.toLowerCase(),
+        password: this.state.password
+      }
+    })
+      .then((results) => {
+        console.log('login post route results:', results)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
 
     axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
       .then((results) => {

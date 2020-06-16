@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import md5 from 'md5'
 import './register.css'
 
 class Register extends Component {

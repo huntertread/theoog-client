@@ -23,14 +23,14 @@ class LogIn extends Component {
     event.preventDefault();
 
     // get login
-    // console.log('login get request')
-    // axios('https://api.theoog.net/login')
-    //   .then((results) => {
-    //     console.log('login get route results', results)
-    //   })
-    //   .catch((err) => {
-    //     console.error(err)
-    //   })
+    console.log('login get request')
+    axios('https://api.theoog.net/login')
+      .then((results) => {
+        console.log('login get route results', results)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
 
     // post login
     console.log('login post request')

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import md5 from 'md5'
+// import md5 from 'md5'
 import axios from 'axios'
 import './login.css'
 
@@ -47,7 +47,7 @@ class LogIn extends Component {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})
         } else if (results.data[0]) {
-          this.props.setUser(results.data[0].username, results.data[0].id)
+          this.props.setUser(results.data[0].username, results.data[1].id)
           this.props.setLogIn()
           this.props.getUserUrls()
         } else {

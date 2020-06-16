@@ -24,7 +24,7 @@ class LogIn extends Component {
 
     // get login
     console.log('login get request')
-    axios('https://api.theoog.net/login')
+    axios.get('https://api.theoog.net/login')
       .then((results) => {
         console.log('login get route results', results)
       })

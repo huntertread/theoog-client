@@ -23,14 +23,14 @@ class LogIn extends Component {
     event.preventDefault();
 
     // get login
-    console.log('login get request')
-    axios.get('https://api.theoog.net/login')
-      .then((results) => {
-        console.log('login get route results', results)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    // console.log('login get request')
+    // axios.get('https://api.theoog.net/login')
+    //   .then((results) => {
+    //     console.log('login get route results', results)
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
 
     // post login
     console.log('login post request')
@@ -44,17 +44,9 @@ class LogIn extends Component {
     })
       .then((results) => {
         console.log('login post route results:', results.data)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-
-    // existing route
-    axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
-      .then((results) => {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})
-        } else if (results.data[0].password === md5(this.state.password)) {
+        } else if (results.data[0]) {
           this.props.setUser(results.data[0].username, results.data[0].id)
           this.props.setLogIn()
           this.props.getUserUrls()
@@ -65,6 +57,23 @@ class LogIn extends Component {
       .catch((err) => {
         console.error(err)
       })
+
+    // existing route
+    // axios.get(`https://api.theoog.net/getExistingUser/${this.state.username.toLowerCase()}`)
+    //   .then((results) => {
+    //     if (results.data[0] === undefined) {
+    //       this.setState({validationMessage: '**username or password is incorrect'})
+    //     } else if (results.data[0].password === md5(this.state.password)) {
+    //       this.props.setUser(results.data[0].username, results.data[0].id)
+    //       this.props.setLogIn()
+    //       this.props.getUserUrls()
+    //     } else {
+    //       this.setState({validationMessage: '**incorrect username or password'})
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
   }
 
   render() {

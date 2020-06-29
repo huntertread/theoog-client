@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import md5 from 'md5'
 import './register.css'
 
 class Register extends Component {
@@ -33,7 +32,7 @@ class Register extends Component {
             if (this.state.email === this.state.emailconfirm) {
               axios.post('https://api.theoog.net/register', {
                 username: this.state.username.toLowerCase(),
-                password: md5(this.state.password),
+                password: this.state.password,
                 email: this.state.email
               })
               .then((results) => {

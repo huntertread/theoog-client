@@ -34,7 +34,7 @@ const UserReducer = (state = INITIAL_STATE, action) => {
         mobileNavOpen: action.payload
       })
     default:
-      return: state;
+      return state;
   };
 };
 

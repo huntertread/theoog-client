@@ -15,7 +15,7 @@ class App extends Component {
       username: 'anon',
       userid: '1',
       registered: true,
-      createdAnon: false,
+      // createdAnon: false,
       anonUrlSubmit: '',
       urlError: '',
       anonUrlReturn: [],

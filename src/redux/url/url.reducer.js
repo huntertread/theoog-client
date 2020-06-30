@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   anonUrlReturn: [],
   urls: [],
   owner: '1',
-  originalurl: '',
+  originalUrl: '',
   validationError: ''
 };
 
@@ -38,7 +38,7 @@ const UrlReducer = (state = INITIAL_STATE, action) => {
     case 'SET_ORIGINAL_URL':
       return ({
         ...state,
-        originalurl: action.payload
+        originalUrl: action.payload
       });
     case 'SET_CREATE_ERROR':
       return ({

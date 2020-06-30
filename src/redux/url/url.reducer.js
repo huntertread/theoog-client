@@ -2,7 +2,10 @@ const INITIAL_STATE = {
   anonUrlSubmit: '',
   urlError: '',
   anonUrlReturn: [],
-  urls: []
+  urls: [],
+  owner: '1',
+  originalurl: '',
+  validationError: ''
 };
 
 const UrlReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +29,21 @@ const UrlReducer = (state = INITIAL_STATE, action) => {
       return ({
         ...state,
         urls: action.payload
+      });
+    case 'SET_URL_OWNER': 
+      return ({
+        ...state,
+        owner: action.payload
+      });
+    case 'SET_ORIGINAL_URL':
+      return ({
+        ...state,
+        originalurl: action.payload
+      });
+    case 'SET_CREATE_ERROR':
+      return ({
+        ...state,
+        validationError: action.payload
       });
     default:
       return state;

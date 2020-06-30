@@ -21,3 +21,18 @@ export const selectUserUrls = createSelector(
   [selectUrl],
   urlState => urlState.urls
 );
+
+export const selectUrlOwner = createSelector(
+  [selectUrl],
+  urlState => urlState.owner
+);
+
+export const selectOriginalUrl = createSelector(
+  [selectUrl],
+  urlState => urlState.originalUrl
+);
+
+export const selectCreateError = createSelector(
+  [selectUrl],
+  urlState => urlState.validationError
+);

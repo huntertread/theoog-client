@@ -9,7 +9,7 @@ class CreateUrl extends Component {
     this.state = {
       owner: this.props.userid,
       originalurl: '',
-      urlnickname: '',
+      // urlnickname: '',
       validationError: ''
     }
     this.handleChange = this.handleChange.bind(this)

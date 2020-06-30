@@ -5,6 +5,11 @@ import CreateUrl from './components/CreateUrl/CreateUrl'
 import ExistingUrlContainer from './components/ExistingUrl/ExistingUrlContainer/ExistingUrlContainer'
 import MediaQuery from 'react-responsive'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { setLoggedInState, setUserName, setUserId, setRegisteredState, setMobileNavState } from './redux/user/user.action'
+import { selectUserLogInState, selectUserName, selectUserId, selectRegisteredState, selectMobileNavState } from './redux/user/user.selector'
+import { setAnonUrlSubmit, setUrlError, setAnonUrlReturn, setUserUrls, setUrlOwner, setOriginalUrl, setCreateError } from './redux/url/url.action'
+import { selectAnonUrlSubmit,selectUrlError, selectAnonUrlReturn, selectUserUrls, selectUrlOwner, selectOriginalUrl, selectCreateError } from './redux/url/url.selector'
 import './App.css'
 
 class App extends Component {
@@ -36,24 +41,38 @@ class App extends Component {
     // if (this.state.loggedIn === true) {
     //   axios.get('https://api.theoog.net/logout') // destroys cookie for passport session
     // }
-    this.setState({loggedIn: !this.state.loggedIn})
+    // this.setState({loggedIn: !this.state.loggedIn})
+    props.setLoggedInState(!props.selectUserLogInState)
   }
 
   setRegistered() {
-    if (this.state.mobileNavOpen === false) {
-      this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+    if (props.selectMobileNavState === false) {
+      props.setMobileNavState(!props.selectMobileNavState)
     }
-    this.setState({registered: !this.state.registered})
+    // if (this.state.mobileNavOpen === false) {
+    //   this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+    // }
+    // this.setState({registered: !this.state.registered})
+    props.setRegisteredState(!props.selectRegisteredState)
   }
 
   setUser(username, userid) {
-    this.setState({username: username, userid: userid})
+    // this.setState({username: username, userid: userid})
+    props.setUserName(username)
+    props.setUserId(userid)
   }
 
   getUserUrls() {
-    axios.get(`https://api.theoog.net/getallurls/${this.state.userid}`)
+    // axios.get(`https://api.theoog.net/getallurls/${this.state.userid}`)
+    //   .then((response) => {
+    //     this.setState({urls: response.data.reverse()})
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
+    axios.get(`https://api.theoog.net/getallurls/${props.selectUserId}`)
       .then((response) => {
-        this.setState({urls: response.data.reverse()})
+        props.setUserUrls(response.data.reverse())
       })
       .catch((err) => {
         console.error(err)
@@ -61,7 +80,8 @@ class App extends Component {
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value})
+    // this.setState({[event.target.name]: event.target.value})
+    props.setAnonUrlSubmit(event.target.value)
   }
 
   checkValidUrl(url) {
@@ -75,15 +95,28 @@ class App extends Component {
   }
 
   clickMobileNav() {
-    this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+    // this.setState({mobileNavOpen: !this.state.mobileNavOpen})
+    props.setMobileNavState(props.selectMobileNavState)
   }
 
   submitAnon(event) {
     event.preventDefault()
-    if (this.checkValidUrl(this.state.anonUrlSubmit)) {
+    // if (this.checkValidUrl(this.state.anonUrlSubmit)) {
+    //   axios.post('https://api.theoog.net/', {
+    //     owner: this.state.userid, // defaults to user 'anon'
+    //     originalurl: this.state.anonUrlSubmit,
+    //   })
+    //   .then((response) => {
+    //     this.setState({anonUrlReturn: response.data[0]})
+    //     this.setState({urlError: ''})
+    //   })
+    // } else {
+    //   this.setState({urlError: '**invalid url, must include http:// or https://'})
+    // }
+    if (this.checkValidUrl(props.selectAnonUrlSubmit)) {
       axios.post('https://api.theoog.net/', {
-        owner: this.state.userid, // defaults to user 'anon'
-        originalurl: this.state.anonUrlSubmit,
+        owner: props.selectUserid, // defaults to user 'anon'
+        originalurl: props.selectAnonUrlSubmit
       })
       .then((response) => {
         this.setState({anonUrlReturn: response.data[0]})
@@ -170,4 +203,38 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    selectUserLogInState:  selectUserLogInState(state),
+    selectUserName: selectUserName(state),
+    selectUserId: selectUserId(state),
+    selectRegisteredState: selectRegisteredState(state),
+    selectMobileNavState: selectMobileNavState(state),
+    selectAnonUrlSubmit: selectAnonUrlSubmit(state), 
+    selectUrlError: selectUrlError(state),
+    selectAnonUrlReturn: selectAnonUrlReturn(state),
+    selectUserUrls: selectUserUrls(state),
+    selectUrlOwner: selectUrlOwner(state),
+    selectOriginalUrl: selectOriginalUrl(state),
+    selectCreateError: selectCreateError(state)
+  };
+};
+
+const mapDispatchToProps = dispatch -> {
+  return {
+    setLoggedInState: render => dispatch(setLoggedInState(render)),
+    setUserName: render => dispatch(setUserName(render)),
+    setUserId: render => dispatch(setUserId(render)),
+    setRegisteredState: render => dispatch(setRegisteredState(render)),
+    setMobileNavState: render => dispatch(setMobileNavState(render)),
+    setAnonUrlSubmit: render => dispatch(setAnonUrlSubmit(redner)),
+    setUrlError: render => dispatch(setUrlError(render)),
+    setAnonUrlReturn: render => dispatch(setAnonUrlReturn(render)),
+    setUserUrls: render => dispatch(setUserUrls(render)),
+    setUrlOwner: render => dispatch(setUrlOwner(render)),
+    setOriginalUrl: render => dispatch(setOriginalUrl(render)),
+    setCreateError: render => dispatch(setCreateError(render))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

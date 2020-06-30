@@ -25,3 +25,24 @@ export const setUserUrls = urlList => {
     paylaod: urlList
   };
 };
+
+export const setUrlOwner = ownerId => {
+  return {
+    type: 'SET_URL_OWNER',
+    payload: ownerId
+  };
+};
+
+export const setOriginalUrl = originalUrl => {
+  return {
+    type: 'SET_ORIGINAL_URL',
+    payload: originalUrl
+  };
+};
+
+export const setCreateError = errorMsg => {
+  return {
+    type: 'SET_CREATE_ERROR',
+    payload: errorMsg
+  };
+};

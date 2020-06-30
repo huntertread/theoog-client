@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+#redirect-message {
+  font-size: 60px;
+  color: #43f063;
+}
+
 p {
   font-weight: bold;
 }

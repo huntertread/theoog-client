@@ -21,7 +21,7 @@ const AppGateway = () => {
     if (window.location.hash !== '') {
       getRedirect()
       return (
-        <div>you are being redirected</div>
+        <div id="redirect-message">you are being redirected</div>
       )
     } else if (window.location.hash === '') {
       return (

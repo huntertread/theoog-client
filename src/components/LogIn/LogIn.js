@@ -33,8 +33,8 @@ class LogIn extends Component {
           this.setState({validationMessage: '**username or password is incorrect'})
         } else if (results.data[0]) {
           this.props.setUser(results.data[0].username, results.data[1].id)
-          this.props.setLogIn()
           this.props.getUserUrls()
+          this.props.setLogIn()
         } else {
           this.setState({validationMessage: '**incorrect username or password'})
         }

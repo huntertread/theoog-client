@@ -119,11 +119,11 @@ class App extends Component {
         originalurl: props.selectAnonUrlSubmit
       })
       .then((response) => {
-        this.setState({anonUrlReturn: response.data[0]})
-        this.setState({urlError: ''})
+        props.setAnonUrlReturn(response.data[0])
+        props.setUrlError('')
       })
     } else {
-      this.setState({urlError: '**invalid url, must include http:// or https://'})
+      props.setUrlError('**invalid url, must include http:// or https://')
     }
   }
 

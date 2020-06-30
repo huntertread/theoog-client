@@ -56,7 +56,7 @@ const App = (props) => {
   }
 
   const clickMobileNav = () => {
-    props.setMobileNavState(props.selectMobileNavState)
+    props.setMobileNavState(!props.selectMobileNavState)
   }
 
   const submitAnon = (event) => {

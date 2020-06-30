@@ -24,7 +24,6 @@ const CreateUrl = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(props.selectOriginalUrl)
     if (checkValidUrl(JSON.stringify(props.selectOriginalUrl))) {
       axios.post('https://api.theoog.net/', {
         owner: props.selectUserId,
@@ -32,6 +31,7 @@ const CreateUrl = (props) => {
       })
       .then((results) => {
         props.setCreateError('')
+        props.setOriginalUrl('')
         props.getUserUrls()
       })
       .catch((err) => {

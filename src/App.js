@@ -8,8 +8,8 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { setLoggedInState, setUserName, setUserId, setRegisteredState, setMobileNavState } from './redux/user/user.action'
 import { selectUserLogInState, selectUserName, selectUserId, selectRegisteredState, selectMobileNavState } from './redux/user/user.selector'
-import { setAnonUrlSubmit, setUrlError, setAnonUrlReturn, setUserUrls, setUrlOwner, setOriginalUrl, setCreateError } from './redux/url/url.action'
-import { selectAnonUrlSubmit,selectUrlError, selectAnonUrlReturn, selectUserUrls, selectUrlOwner, selectOriginalUrl, selectCreateError } from './redux/url/url.selector'
+import { setAnonUrlSubmit, setUrlError, setAnonUrlReturn, setUserUrls, setOriginalUrl } from './redux/url/url.action'
+import { selectAnonUrlSubmit,selectUrlError, selectAnonUrlReturn, selectUserUrls, selectOriginalUrl } from './redux/url/url.selector'
 import './App.css'
 
 const App = (props) => {
@@ -27,8 +27,6 @@ const App = (props) => {
   const setUser = (username, userid) => {
     props.setUserName(`${username}`)
     props.setUserId(`${userid}`)
-    console.log(props.selectUserName)
-    console.log(props.selectUserId)
   }
 
   const getUserUrls = () => {
@@ -63,12 +61,13 @@ const App = (props) => {
     event.preventDefault()
     if (checkValidUrl(props.selectAnonUrlSubmit)) {
       axios.post('https://api.theoog.net/', {
-        owner: props.selectUserid, // defaults to user 'anon'
+        owner: props.selectUserid,
         originalurl: props.selectAnonUrlSubmit
       })
       .then((response) => {
         props.setAnonUrlReturn(response.data[0])
         props.setUrlError('')
+        props.setOriginalUrl('')
       })
     } else {
       props.setUrlError('**invalid url, must include http:// or https://')
@@ -157,9 +156,7 @@ const mapStateToProps = state => {
     selectUrlError: selectUrlError(state),
     selectAnonUrlReturn: selectAnonUrlReturn(state),
     selectUserUrls: selectUserUrls(state),
-    selectUrlOwner: selectUrlOwner(state),
-    selectOriginalUrl: selectOriginalUrl(state),
-    selectCreateError: selectCreateError(state)
+    selectOriginalUrl: selectOriginalUrl(state)
   };
 };
 
@@ -174,9 +171,7 @@ const mapDispatchToProps = dispatch => {
     setUrlError: render => dispatch(setUrlError(render)),
     setAnonUrlReturn: render => dispatch(setAnonUrlReturn(render)),
     setUserUrls: render => dispatch(setUserUrls(render)),
-    setUrlOwner: render => dispatch(setUrlOwner(render)),
-    setOriginalUrl: render => dispatch(setOriginalUrl(render)),
-    setCreateError: render => dispatch(setCreateError(render))
+    setOriginalUrl: render => dispatch(setOriginalUrl(render))
   };
 };
 

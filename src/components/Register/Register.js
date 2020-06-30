@@ -38,6 +38,7 @@ class Register extends Component {
               .then((results) => {
                 this.props.setUser(results.data[0].username, results.data[0].id)
                 this.props.setLogIn()
+                this.props.setRegistered()
               })
               .catch((err) => {
                 console.error(err)

@@ -1,6 +1,8 @@
 import React from 'react'
 import App from './App'
 import axios from 'axios'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
 
 const AppGateway = () => {
 
@@ -22,7 +24,13 @@ const AppGateway = () => {
         <div>you are being redirected</div>
       )
     } else if (window.location.hash === '') {
-      return <App />
+      return (
+        <div>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </div>
+      )
     }
   }
 

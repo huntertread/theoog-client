@@ -1,4 +1,4 @@
-import { createSelector } from 'reslect'
+import { createSelector } from 'reselect'
 
 const selectUrl = state => state.urlState;
 

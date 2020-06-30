@@ -32,9 +32,12 @@ class LogIn extends Component {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})
         } else if (results.data[0]) {
-          this.props.setUser(results.data[0].username, results.data[1].id)
-          this.props.getUserUrls()
-          this.props.setLogIn()
+          async function asyncLogin() {
+            await this.props.setUser(results.data[0].username, results.data[1].id)
+            await this.props.getUserUrls()
+            await this.props.setLogIn()
+          }
+          asyncLogin()
         } else {
           this.setState({validationMessage: '**incorrect username or password'})
         }

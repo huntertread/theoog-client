@@ -12,10 +12,17 @@ class LogIn extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.asyncLogin = this.asyncLogin.bind(this)
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
+  }
+
+  async asyncLogin(username, userid) {
+    await this.props.setUser(username, userid)
+    await this.props.getUserUrls()
+    await this.props.setLogIn()
   }
 
   handleSubmit(event) {
@@ -32,12 +39,7 @@ class LogIn extends Component {
         if (results.data[0] === undefined) {
           this.setState({validationMessage: '**username or password is incorrect'})
         } else if (results.data[0]) {
-          async function asyncLogin() {
-            await this.props.setUser(results.data[0].username, results.data[1].id)
-            await this.props.getUserUrls()
-            await this.props.setLogIn()
-          }
-          asyncLogin()
+          this.asyncLogin(results.data[0].username, results.data[1].id)
         } else {
           this.setState({validationMessage: '**incorrect username or password'})
         }

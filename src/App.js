@@ -25,8 +25,8 @@ const App = (props) => {
   }
 
   const setUser = (username, userid) => {
-    props.setUserName(username)
-    props.setUserId(userid)
+    props.setUserName(`${username}`)
+    props.setUserId(`${userid}`)
     console.log(props.selectUserName)
     console.log(props.selectUserId)
   }
@@ -37,6 +37,7 @@ const App = (props) => {
         console.log('get user urls response data: ', response.data)
         console.log("user urls", props.selectUserUrls)
         props.setUserUrls(response.data.reverse())
+        console.log("user urls", props.selectUserUrls)
       })
       .catch((err) => {
         console.error(err)

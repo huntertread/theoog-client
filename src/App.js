@@ -39,6 +39,9 @@ const App = (props) => {
         props.setUserUrls(response.data.reverse())
         console.log("user urls", props.selectUserUrls)
       })
+      .then((results) => {
+        console.log("user urls", props.selectUserUrls)
+      })
       .catch((err) => {
         console.error(err)
       })

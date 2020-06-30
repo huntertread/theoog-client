@@ -22,7 +22,7 @@ export const setAnonUrlReturn = url => {
 export const setUserUrls = urlList => {
   return {
     type: 'SET_USER_URLS',
-    paylaod: urlList
+    payload: urlList
   };
 };
 

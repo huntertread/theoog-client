@@ -27,12 +27,16 @@ const App = (props) => {
   const setUser = (username, userid) => {
     props.setUserName(username)
     props.setUserId(userid)
+    console.log(props.selectUserName)
+    console.log(props.selectUserId)
   }
 
   const getUserUrls = () => {
     axios.get(`https://api.theoog.net/getallurls/${props.selectUserId}`)
       .then((response) => {
+        console.log('get user urls response data: ', response.data)
         props.setUserUrls(response.data.reverse())
+        console.log("user urls", props.selectUserUrls)
       })
       .catch((err) => {
         console.error(err)

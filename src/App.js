@@ -67,7 +67,7 @@ const App = (props) => {
       .then((response) => {
         props.setAnonUrlReturn(response.data[0])
         props.setUrlError('')
-        props.setOriginalUrl('')
+        props.setAnonUrlSubmit('')
       })
     } else {
       props.setUrlError('**invalid url, must include http:// or https://')
@@ -152,7 +152,7 @@ const mapStateToProps = state => {
     selectUserId: selectUserId(state),
     selectRegisteredState: selectRegisteredState(state),
     selectMobileNavState: selectMobileNavState(state),
-    selectAnonUrlSubmit: selectAnonUrlSubmit(state), 
+    selectAnonUrlSubmit: selectAnonUrlSubmit(state),
     selectUrlError: selectUrlError(state),
     selectAnonUrlReturn: selectAnonUrlReturn(state),
     selectUserUrls: selectUserUrls(state),

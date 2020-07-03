@@ -30,7 +30,8 @@ const App = (props) => {
   }
 
   const getUserUrls = () => {
-    axios.get(`https://api.theoog.net/getallurls/${props.selectUserId}`)
+    axios.get(`https://api.theoog.net/user/${props.selectUserName}/url/${props.selectUserId}`)
+    // axios.get(`https://api.theoog.net/getallurls/${props.selectUserId}`)
       .then((response) => {
         props.setUserUrls(response.data.reverse())
       })
@@ -60,7 +61,8 @@ const App = (props) => {
   const submitAnon = (event) => {
     event.preventDefault()
     if (checkValidUrl(props.selectAnonUrlSubmit)) {
-      axios.post('https://api.theoog.net/', {
+      axios.post('https://api.theoog.net/url', {
+      // axios.post('https://api.theoog.net/', {
         owner: props.selectUserid,
         originalurl: props.selectAnonUrlSubmit
       })

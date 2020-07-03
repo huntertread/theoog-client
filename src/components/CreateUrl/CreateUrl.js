@@ -26,7 +26,6 @@ const CreateUrl = (props) => {
     event.preventDefault();
     if (checkValidUrl(props.selectOriginalUrl)) {
       axios.post('https://api.theoog.net/url', {
-      // axios.post('https://api.theoog.net/', {
         owner: props.selectUserId,
         originalurl: props.selectOriginalUrl
       })

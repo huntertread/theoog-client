@@ -9,7 +9,6 @@ const AppGateway = () => {
   const getRedirect = () => {
     const noHash = window.location.hash.substring(1)
     axios.get(`https://api.theoog.net/url/${noHash}`)
-    // axios.get(`https://api.theoog.net/${noHash}`)
       .then((results) => {
         window.location.href = results.data[0].originalurl
       })
